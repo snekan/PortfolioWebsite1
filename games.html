@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games | Snekanth Babu</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Snekanth<span>.</span></a>
+            <div class="mobile-toggle">☰</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">About Me</a></li>
+                <li><a href="projects-research.html" class="nav-link">Projects & Research</a></li>
+                <li><a href="education.html" class="nav-link">Education & Certificates</a></li>
+                <li><a href="experience.html" class="nav-link">Work Experience</a></li>
+                <li><a href="skills.html" class="nav-link">Skills</a></li>
+                <li><a href="purpose.html" class="nav-link">Purpose & Blog</a></li>
+                <li><a href="games.html" class="nav-link active">Games</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">Playground</span>
+                <h2 class="section-title">Interactive Zone</h2>
+                <p class="section-subtitle">Take a break and test your skills.</p>
+            </div>
+
+            <div class="grid-2" style="max-width: 800px; margin: 0 auto;">
+
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🐍</div>
+                    <h3 style="margin-bottom: 10px;">Pro Snake</h3>
+                    <p style="margin-bottom: 30px; color: var(--text-secondary);">Classic arcade game with score
+                        tracking.</p>
+                    <!-- Link to game subfolder (offline relative path) -->
+                    <!-- NOTE: User needs to ensure the game files are in games/snake-game/index.html -->
+                    <a href="games/snake-game/index.html" class="btn">Play Now</a>
+                </div>
+
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🌍</div>
+                    <h3 style="margin-bottom: 10px;">Eco Planter</h3>
+                    <p style="margin-bottom: 30px; color: var(--text-secondary);">Click to plant trees and track your
+                        virtual environmental impact.</p>
+                    <!-- Link to game subfolder (offline relative path) -->
+                    <a href="games/mini-game/index.html" class="btn">Start Planting</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
