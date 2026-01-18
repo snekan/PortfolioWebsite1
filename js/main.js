@@ -4,7 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Mobile Navigation Toggle
-    const mobileToggle = document.querySelector('.hamburger'); // Assuming .hamburger is now the mobile toggle
+    const mobileToggle = document.querySelector('.mobile-toggle');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close menu when clicking a link (UX improvement)
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
+            if (mobileToggle) mobileToggle.textContent = '☰';
             navMenu.classList.remove('active');
         });
     });
