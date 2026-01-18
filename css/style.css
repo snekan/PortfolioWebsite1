@@ -158,8 +158,12 @@ body {
     /* Remove hover line on mobile */
 
     /* Layout Adjustments */
-    grid-template-columns: 1fr;
-    gap: 30px;
+    .grid-2,
+    .grid-3,
+    .grid-auto {
+        grid-template-columns: 1fr !important;
+        gap: 30px;
+    }
 }
 
 .section-header {
