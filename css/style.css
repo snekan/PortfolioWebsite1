@@ -76,14 +76,29 @@ body {
         /* Align with container edge */
         cursor: pointer;
         z-index: 9999;
-        /* Max z-index */
-        color: #ffffff;
-        /* Explicit white color */
+        color: var(--text-primary);
+        /* Dark Toggle for Light Theme */
         position: relative;
     }
 
     .nav-buttons {
         gap: 15px;
+    }
+
+    /* Optional: Add subtle texture via pseudo-element */
+    .navbar::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* CSS-based subtle noise pattern instead of image */
+        background-image: radial-gradient(#d6d3d1 1px, transparent 1px);
+        background-size: 20px 20px;
+        opacity: 0.4;
+        z-index: -1;
+        pointer-events: none;
     }
 
     .nav-menu {
@@ -96,12 +111,13 @@ body {
         left: 0;
         width: 100%;
         height: auto;
-        background-color: #1c1917;
-        /* Dark background */
+        background-color: #fdfbf7;
+        /* Light Background */
         padding: 20px 0;
         gap: 0;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        /* Soft Shadow */
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
         z-index: 1999;
         overflow-y: auto;
         max-height: calc(100vh - 80px);
@@ -116,16 +132,19 @@ body {
     .nav-link {
         display: block;
         padding: 15px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        /* Light divider */
         font-size: 1.1rem;
         text-align: center;
         width: 100%;
-        color: #fdfbf7;
+        color: var(--text-primary);
+        /* Dark text */
     }
 
     .nav-link:hover {
-        background-color: rgba(255, 255, 255, 0.05);
-        color: var(--accent-color);
+        background-color: rgba(0, 0, 0, 0.02);
+        color: #d97706;
+        /* Accent */
     }
 
     .nav-link:last-child {
