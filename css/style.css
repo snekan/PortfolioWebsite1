@@ -462,7 +462,14 @@ section {
         display: block;
         font-size: 1.8rem;
         cursor: pointer;
-        z-index: 1001;
+        z-index: 2000;
+        /* High z-index to stay on top */
+        color: var(--text-color);
+        position: relative;
+    }
+
+    .nav-buttons {
+        gap: 15px;
     }
 
     .nav-menu {
@@ -474,11 +481,17 @@ section {
         /* Below navbar */
         left: 0;
         width: 100%;
+        height: auto;
         background-color: #1c1917;
-        padding: 30px;
+        /* Dark background */
+        padding: 20px 0;
         gap: 0;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         border-top: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 1999;
+        overflow-y: auto;
+        max-height: calc(100vh - 80px);
+        /* Prevent scrolling issues */
     }
 
     .nav-menu.active {
@@ -492,6 +505,13 @@ section {
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         font-size: 1.1rem;
         text-align: center;
+        width: 100%;
+        color: #fdfbf7;
+    }
+
+    .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: var(--accent-color);
     }
 
     .nav-link:last-child {
@@ -505,40 +525,37 @@ section {
     /* Remove hover line on mobile */
 
     /* Layout Adjustments */
-    .grid-2,
-    .grid-3,
-    .grid-auto {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
 
-    .section-header {
-        margin-bottom: 40px;
-    }
+.section-header {
+    margin-bottom: 40px;
+}
 
-    .hero-content {
-        margin-top: 0;
-    }
+.hero-content {
+    margin-top: 0;
+}
 
-    .profile-img-large {
-        max-width: 90%;
-    }
+.profile-img-large {
+    max-width: 90%;
+}
 
-    .timeline {
-        padding-left: 20px;
-        border-left-width: 2px;
-    }
+.timeline {
+    padding-left: 20px;
+    border-left-width: 2px;
+}
 
-    .timeline-item {
-        padding-left: 25px;
-        margin-bottom: 40px;
-    }
+.timeline-item {
+    padding-left: 25px;
+    margin-bottom: 40px;
+}
 
-    .card {
-        padding: 25px;
-    }
+.card {
+    padding: 25px;
+}
 
-    /* Smaller padding for mobile cards */
+/* Smaller padding for mobile cards */
 }
 
 @media (max-width: 480px) {
