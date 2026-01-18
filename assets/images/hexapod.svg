@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <rect width="400" height="300" fill="#fae8ff"/>
+  
+  <!-- Body -->
+  <ellipse cx="200" cy="150" rx="50" ry="40" fill="#c026d3"/>
+  <circle cx="200" cy="150" r="20" fill="#e879f9"/>
+  
+  <!-- Legs Left -->
+  <path d="M160,140 L120,120 L110,140" stroke="#86198f" stroke-width="6" fill="none"/>
+  <path d="M150,150 L110,150 L100,170" stroke="#86198f" stroke-width="6" fill="none"/>
+  <path d="M160,160 L120,180 L110,200" stroke="#86198f" stroke-width="6" fill="none"/>
+  
+  <!-- Legs Right -->
+  <path d="M240,140 L280,120 L290,140" stroke="#86198f" stroke-width="6" fill="none"/>
+  <path d="M250,150 L290,150 L300,170" stroke="#86198f" stroke-width="6" fill="none"/>
+  <path d="M240,160 L280,180 L290,200" stroke="#86198f" stroke-width="6" fill="none"/>
+  
+  <text x="50%" y="280" font-family="sans-serif" font-size="20" fill="#701a75" text-anchor="middle">Hexapod Robot</text>
+</svg>

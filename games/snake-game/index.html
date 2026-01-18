@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Snake Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="snake.css">
+</head>
+
+<body>
+
+    <div class="game-wrapper">
+        <div class="header">
+            <h1>🐍 SNAKE</h1>
+            <div class="score-panel">
+                <div class="score-box">
+                    <span>SCORE</span>
+                    <span id="score">0</span>
+                </div>
+                <div class="score-box">
+                    <span>BEST</span>
+                    <span id="highScore">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="gameCanvas" width="400" height="400"></canvas>
+
+            <!-- Game Over Overlay -->
+            <div id="gameOverScreen" class="overlay hidden">
+                <h2>GAME OVER</h2>
+                <p>Score: <span id="finalScore">0</span></p>
+                <button onclick="resetGame()" class="restart-btn">Try Again</button>
+            </div>
+
+            <!-- Pause Overlay -->
+            <div id="pauseScreen" class="overlay hidden">
+                <h2>PAUSED</h2>
+                <p>Press Space to Resume</p>
+            </div>
+        </div>
+
+        <p class="desktop-controls">Use <strong>Arrow Keys</strong> or <strong>WASD</strong> to Move |
+            <strong>Space</strong> to Pause</p>
+
+        <!-- Mobile Controls -->
+        <div class="mobile-controls">
+            <button class="control-btn" onclick="handleMobileInput('up')">▲</button>
+            <div class="row">
+                <button class="control-btn" onclick="handleMobileInput('left')">◀</button>
+                <button class="control-btn" onclick="handleMobileInput('down')">▼</button>
+                <button class="control-btn" onclick="handleMobileInput('right')">▶</button>
+            </div>
+        </div>
+
+        <button onclick="window.close()" class="back-btn">Exit Game</button>
+    </div>
+
+    <script src="snake.js"></script>
+</body>
+
+</html>
