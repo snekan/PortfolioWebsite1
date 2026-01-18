@@ -3,19 +3,25 @@
    ========================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Navigation Toggle
-    const hamburger = document.querySelector('.hamburger');
+    // Mobile Navigation Toggle
+    const mobileToggle = document.querySelector('.hamburger'); // Assuming .hamburger is now the mobile toggle
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    if (hamburger) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
+    if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
+
+            // Optional: Toggle icon between hamburger and close (X)
+            if (navMenu.classList.contains('active')) {
+                mobileToggle.textContent = '✕'; // Close icon
+            } else {
+                mobileToggle.textContent = '☰'; // Hamburger icon
+            }
         });
     }
 
-    // Close menu when clicking a link
+    // Close menu when clicking a link (UX improvement)
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
