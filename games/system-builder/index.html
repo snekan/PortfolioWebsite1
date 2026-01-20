@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build the System | Snekanth Babu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #fdfbf7;
+            --text-primary: #1c1917;
+            --accent-blue: #0ea5e9;
+            --bg-card: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .btn-back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            border: 2px solid var(--text-primary);
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            background: var(--text-primary);
+            color: white;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        p.subtitle {
+            color: #57534e;
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .system-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .module {
+            width: 160px;
+            height: 200px;
+            background: var(--bg-card);
+            border: 2px dashed #a8a29e;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .module:hover {
+            transform: translateY(-5px);
+            border-color: var(--text-primary);
+        }
+
+        .module.selected {
+            border-style: solid;
+            border-color: var(--accent-blue);
+            background: #f0f9ff;
+        }
+
+        .module-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .module-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .module-type {
+            font-size: 0.8rem;
+            color: #57534e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .connector {
+            font-size: 2rem;
+            color: #a8a29e;
+            align-self: center;
+            display: none;
+        }
+
+        @media (min-width: 600px) {
+            .connector {
+                display: block;
+            }
+        }
+
+        .results {
+            text-align: center;
+            background: white;
+            padding: 20px 40px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            font-weight: 700;
+            font-size: 1.25rem;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .refresh-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: var(--text-primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="../../games.html" class="btn-back">← Back</a>
+
+    <h1>System Architect</h1>
+    <p class="subtitle">Tap the modules to configure the most efficient automation system.</p>
+
+    <div class="system-grid">
+        <!-- Input -->
+        <div class="module" onclick="cycleModule(0)" id="mod-0">
+            <div class="module-type">Input</div>
+            <div class="module-icon">✋</div>
+            <div class="module-title">Manual Data</div>
+        </div>
+
+        <div class="connector">→</div>
+
+        <!-- Process -->
+        <div class="module" onclick="cycleModule(1)" id="mod-1">
+            <div class="module-type">Process</div>
+            <div class="module-icon">🧠</div>
+            <div class="module-title">Basic Logic</div>
+        </div>
+
+        <div class="connector">→</div>
+
+        <!-- Output -->
+        <div class="module" onclick="cycleModule(2)" id="mod-2">
+            <div class="module-type">Output</div>
+            <div class="module-icon">📄</div>
+            <div class="module-title">Report</div>
+        </div>
+    </div>
+
+    <div class="results" id="results">System Efficiency: 20%</div>
+    <button class="refresh-btn" onclick="checkOptimization()" id="checkBtn">Check System</button>
+
+    <script>
+        const options = [
+            [ // Inputs
+                { icon: "✋", title: "Manual Data", score: 10 },
+                { icon: "📡", title: "IoT Sensors", score: 30 },
+                { icon: "💾", title: "Legacy DB", score: 20 }
+            ],
+            [ // Process
+                { icon: "🧠", title: "Basic Logic", score: 10 },
+                { icon: "🤖", title: "AI Model", score: 40 },
+                { icon: "⚡", title: "Automation", score: 30 }
+            ],
+            [ // Output
+                { icon: "📄", title: "Report", score: 10 },
+                { icon: "📊", title: "Dashboard", score: 30 },
+                { icon: "📱", title: "Real-time App", score: 30 }
+            ]
+        ];
+
+        let state = [0, 0, 0]; // Current index for each slot
+
+        function cycleModule(slotIndex) {
+            state[slotIndex] = (state[slotIndex] + 1) % options[slotIndex].length;
+            updateUI();
+            calculateScore();
+        }
+
+        function updateUI() {
+            for (let i = 0; i < 3; i++) {
+                const mod = document.getElementById(`mod-${i}`);
+                const data = options[i][state[i]];
+                mod.querySelector('.module-icon').innerText = data.icon;
+                mod.querySelector('.module-title').innerText = data.title;
+
+                // Visual feedback for interaction
+                mod.classList.add('selected');
+                setTimeout(() => mod.classList.remove('selected'), 300);
+            }
+        }
+
+        function calculateScore() {
+            const scoreIn = options[0][state[0]].score;
+            const scoreProc = options[1][state[1]].score;
+            const scoreOut = options[2][state[2]].score;
+
+            const total = scoreIn + scoreProc + scoreOut;
+            const resultsDiv = document.getElementById('results');
+
+            resultsDiv.style.opacity = '1';
+            resultsDiv.innerText = `System Efficiency: ${total}%`;
+
+            if (total === 100) {
+                resultsDiv.style.color = '#15803d';
+                resultsDiv.innerText = "System Efficiency: 100% (Optimal!)";
+            } else {
+                resultsDiv.style.color = '#1c1917';
+            }
+        }
+
+        // Initial render
+        updateUI();
+        calculateScore();
+    </script>
+</body>
+
+</html>

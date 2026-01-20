@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Journey | Snekanth Babu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #fdfbf7;
+            --text-primary: #1c1917;
+            --text-secondary: #57534e;
+            --accent-orange: #d97706;
+            --bg-card: #ffffff;
+            --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .btn-back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            border: 2px solid var(--text-primary);
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            background: var(--text-primary);
+            color: white;
+        }
+
+        .game-container {
+            max-width: 600px;
+            width: 100%;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .phase-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+            font-size: 2rem;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            min-height: 80px;
+        }
+
+        .btn-action {
+            display: inline-block;
+            padding: 14px 28px;
+            background: var(--accent-orange);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(217, 119, 6, 0.2);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e7e5e4;
+            border-radius: 10px;
+            margin-top: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--text-primary);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="../../games.html" class="btn-back">← Back</a>
+
+    <div class="game-container">
+        <div id="content" class="fade-in">
+            <div class="phase-icon">🎓</div>
+            <h1>The Beginning</h1>
+            <p>Every journey starts with curiosity. My passion for technology began with a desire to understand how
+                things work.</p>
+            <button class="btn-action" onclick="nextPhase()">Explore Engineering</button>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+    </div>
+
+    <script>
+        const phases = [
+            {
+                icon: "🎓",
+                title: "The Beginning",
+                text: "Every journey starts with curiosity. My passion for technology began with a desire to understand how things work.",
+                cta: "Explore Engineering"
+            },
+            {
+                icon: "🛠️",
+                title: "Engineering Foundation",
+                text: "I dove deep into Mechatronics and Robotics, learning to build systems that bridge software and hardware.",
+                cta: "Discover Business"
+            },
+            {
+                icon: "💼",
+                title: "Business Strategy",
+                text: "Realizing that great tech needs great strategy, I expanded into International Business Management to lead with impact.",
+                cta: "See The Future"
+            },
+            {
+                icon: "🚀",
+                title: "The Vision",
+                text: "Now, I combine technical expertise with strategic insight to drive innovation and solve complex global challenges.",
+                cta: "Connect With Me"
+            }
+        ];
+
+        let currentPhase = 0;
+        const contentDiv = document.getElementById('content');
+        const progressFill = document.getElementById('progress');
+
+        function updateUI() {
+            const phase = phases[currentPhase];
+
+            // Animate transition
+            contentDiv.style.opacity = '0';
+            contentDiv.style.transform = 'translateY(10px)';
+
+            setTimeout(() => {
+                contentDiv.innerHTML = `
+                    <div class="phase-icon">${phase.icon}</div>
+                    <h1>${phase.title}</h1>
+                    <p>${phase.text}</p>
+                    <button class="btn-action" onclick="nextPhase()">${phase.cta}</button>
+                `;
+
+                // Fade in
+                contentDiv.style.transition = 'all 0.5s ease';
+                contentDiv.style.opacity = '1';
+                contentDiv.style.transform = 'translateY(0)';
+
+                // Update progress
+                progressFill.style.width = ((currentPhase + 1) / phases.length) * 100 + '%';
+            }, 300);
+        }
+
+        window.nextPhase = function () {
+            if (currentPhase < phases.length - 1) {
+                currentPhase++;
+                updateUI();
+            } else {
+                // Redirect to contact page
+                window.location.href = '../../contact.html';
+            }
+        }
+
+        // Init progress
+        progressFill.style.width = '25%';
+    </script>
+</body>
+
+</html>

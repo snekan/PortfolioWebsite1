@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data to Decision | Snekanth Babu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #fdfbf7;
+            --text-primary: #1c1917;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --bg-card: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .btn-back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            border: 2px solid var(--text-primary);
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            background: var(--text-primary);
+            color: white;
+        }
+
+        .dashboard {
+            background: var(--bg-card);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .chart-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 20px;
+            height: 150px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e7e5e4;
+            padding-bottom: 5px;
+        }
+
+        .bar {
+            width: 40px;
+            background: #a8a29e;
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            transition: height 0.5s ease, background 0.3s;
+        }
+
+        .bar.alert {
+            background: var(--accent-red);
+        }
+
+        .bar.success {
+            background: var(--accent-green);
+        }
+
+        .scenario-text {
+            color: #57534e;
+            margin-bottom: 30px;
+            min-height: 60px;
+        }
+
+        .choices {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn-choice {
+            padding: 15px;
+            background: var(--text-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-choice:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .result-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            padding: 30px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .result-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .status-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="../../games.html" class="btn-back">← Back</a>
+
+    <div class="dashboard">
+        <h2>Q1 Performance Analysis</h2>
+
+        <div class="chart-container">
+            <div class="bar" style="height: 60%"></div>
+            <div class="bar" style="height: 80%"></div>
+            <div class="bar alert" style="height: 40%"></div> <!-- Drop in Q3 -->
+        </div>
+
+        <p class="scenario-text" id="scenario">
+            <strong>Critical Alert:</strong> Production dropped significantly in Month 3 due to supply chain delays.
+        </p>
+
+        <div class="choices">
+            <button class="btn-choice" onclick="makeDecision('bad')">Cut Costs Quickly</button>
+            <button class="btn-choice" onclick="makeDecision('good')">Diversify Suppliers</button>
+        </div>
+
+        <div class="result-overlay" id="result">
+            <div class="status-icon" id="resIcon">✅</div>
+            <h3 id="resTitle">Good Decision</h3>
+            <p id="resText" style="margin: 15px 0; color: #57534e;">Diversifying suppliers stabilized the production
+                line for the long term.</p>
+            <button class="btn-choice" onclick="resetGame()" style="width: 100%">Next Scenario</button>
+        </div>
+    </div>
+
+    <script>
+        const resultOverlay = document.getElementById('result');
+
+        function makeDecision(type) {
+            const icon = document.getElementById('resIcon');
+            const title = document.getElementById('resTitle');
+            const text = document.getElementById('resText');
+            const bars = document.querySelectorAll('.bar');
+
+            if (type === 'good') {
+                icon.innerText = '✅';
+                title.innerText = "Strategic Success";
+                text.innerText = "Diversifying suppliers absorbed the shock. Production returned to normal levels.";
+                bars[2].style.height = '85%';
+                bars[2].className = 'bar success';
+            } else {
+                icon.innerText = '⚠️';
+                title.innerText = "Short-term Fix";
+                text.innerText = "Cutting costs saved money now but caused a quality drop in Q2. The root cause remains.";
+                bars[2].style.height = '30%';
+                bars[2].className = 'bar alert';
+            }
+
+            resultOverlay.classList.add('active');
+        }
+
+        window.resetGame = function () {
+            // Simple reset for this demo loop
+            resultOverlay.classList.remove('active');
+            const bars = document.querySelectorAll('.bar');
+            setTimeout(() => {
+                bars[2].style.height = '40%';
+                bars[2].className = 'bar alert';
+            }, 300);
+        }
+    </script>
+</body>
+
+</html>
