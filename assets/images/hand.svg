@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <linearGradient id="metal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#94a3b8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#475569;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="#f0f9ff"/>
+  
+  <!-- Palm -->
+  <rect x="160" y="160" width="80" height="100" rx="10" fill="url(#metal)"/>
+  
+  <!-- Fingers -->
+  <rect x="140" y="80" width="15" height="80" rx="5" fill="#cbd5e1" transform="rotate(-15 140 160)"/>
+  <rect x="165" y="60" width="15" height="100" rx="5" fill="#cbd5e1"/>
+  <rect x="190" y="60" width="15" height="100" rx="5" fill="#cbd5e1"/>
+  <rect x="220" y="70" width="15" height="90" rx="5" fill="#cbd5e1" transform="rotate(10 220 160)"/>
+  
+  <!-- Thumb -->
+  <rect x="230" y="180" width="60" height="15" rx="5" fill="#cbd5e1" transform="rotate(30 230 180)"/>
+  
+  <!-- Joints -->
+  <circle cx="172" cy="110" r="5" fill="#334155"/>
+  <circle cx="197" cy="110" r="5" fill="#334155"/>
+  
+  <text x="50%" y="280" font-family="sans-serif" font-size="20" fill="#0f172a" text-anchor="middle">Animatronic Hand</text>
+</svg>
